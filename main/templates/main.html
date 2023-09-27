@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <!-- mulai bikin navbar dari bootstrap -->
+    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary"> -->
+    <nav class="navbar bg-dark border-bottom border-bottom-dark navbar-dark" data-bs-theme="light"> <!-- biar dark mode -->
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Khalisha Hana</a>
+
+        <a class="btn btn-primary" href="{% url 'main:logout' %}" role="button">Logout</a>
+
+        </div>
+      </nav>
+    <!-- akhir kodingan navbar -->
+
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -25,6 +38,18 @@
                 <td>{{product.price}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button type="button" class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.pk %}">
+                        <button type="button" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -32,16 +57,17 @@
     <br />
 
     <a href="{% url 'main:create_product' %}">
-        <button>
+        <button type="button" class="btn btn-success">
             Add New Product
         </button>
     </a>
 
-    <a href="{% url 'main:logout' %}">
+    <!-- logout pindah ke atas -->
+    <!-- <a href="{% url 'main:logout' %}">
         <button>
             Logout
         </button>
-    </a>
+    </a> -->
 
     <h5>Sesi terakhir login: {{last_login}}</h5>
 {% endblock content %}
